@@ -87,7 +87,7 @@ ufw route allow to 10.0.2.0/24   # supabase ネットワーク全体
 | 80 | HTTP → HTTPSリダイレクト |
 | 443 | HTTPS |
 | 5433 | PostgreSQL（socat経由で5432にフォワード、systemd永続化） |
-| 10000 | Webmin（username: `forpwa`） |
+| 10000 | Webmin |
 
 ---
 
@@ -131,7 +131,7 @@ ufw route allow to 10.0.2.0/24   # supabase ネットワーク全体
 | 項目 | 方法 |
 |---|---|
 | Coolify UI | SSH tunnel → `localhost:18000` |
-| Webmin | port 10000（username: `forpwa`） |
+| Webmin | port 10000 |
 | Supabase Studio | `https://supabase.hama02.shizuku.net` |
 | SSH | 標準鍵認証（詳細はジージの手元） |
 
