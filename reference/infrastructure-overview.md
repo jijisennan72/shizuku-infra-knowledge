@@ -1,6 +1,6 @@
 # しずくネット インフラ全体像
 
-**最終更新**: 2026年4月20日
+**最終更新**: 2026年4月23日
 
 ---
 
@@ -43,7 +43,9 @@
 - `coolify` — 各アプリへのルーティング用
 - `y12thilic710z4ni7c44g9ro` — Supabaseへのルーティング用（2026-04-20に追加）
 
-**⚠️ `docker network connect` で追加した接続は永続化されていない。** 再起動後にチェック必須。
+**✅ systemdサービスで永続化済み（2026-04-23）**
+`/etc/systemd/system/docker-network-connect.service` を作成・有効化。
+Docker起動後に自動実行されるため、手動対応不要。
 
 ---
 
@@ -139,10 +141,11 @@ ufw route allow to 10.0.2.0/24   # supabase ネットワーク全体
 
 ## ⚙️ systemd管理下のサービス
 
-| unit名 | 用途 | 状態（2026-04-20時点） |
+| unit名 | 用途 | 状態（2026-04-23時点） |
 |---|---|---|
 | `socat-pg.service` | 5433→5432ポートフォワード | enabled |
 | `hama-app.service` | はまアプリコンテナ自動起動 | enabled（ただし現状 dead 状態で別途Next.jsが稼働中・要調査） |
+| `docker-network-connect.service` | coolify-proxy を Supabase ネットワークへ接続 | enabled |
 
 ---
 
